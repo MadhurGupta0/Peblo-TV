@@ -1,0 +1,65 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: peblo
+      POSTGRES_USER: peblo
+      POSTGRES_PASSWORD: peblo
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U peblo -d peblo"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    env_file:
+      - .env
+    environment:
+      database_url: ${DATABASE_URL:-postgresql+psycopg2://peblo:peblo@db:5432/peblo}
+      storage_local_path: /data/storage
+      storage_public_base_url: ${STORAGE_PUBLIC_BASE_URL:-http://localhost:8000/storage}
+      cors_origins: ${CORS_ORIGINS:-http://localhost:5173,http://localhost:5174,http://127.0.0.1:5173,http://127.0.0.1:5174,http://localhost:4173,http://localhost:4174,http://127.0.0.1:4173,http://127.0.0.1:4174}
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "alembic upgrade head &&
+      python /app/scripts/seed.py &&
+      python -m uvicorn app.main:app --host 0.0.0.0 --port 8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - storage_data:/data/storage
+
+  cms:
+    build:
+      context: ./cms
+      args:
+        VITE_API_BASE_URL: ${CMS_VITE_API_BASE_URL:-http://localhost:8000}
+    depends_on:
+      api:
+        condition: service_started
+    ports:
+      - "4173:80"
+
+  viewer:
+    build:
+      context: ./viewer
+      args:
+        VITE_API_BASE_URL: ${VIEWER_VITE_API_BASE_URL:-http://localhost:8000}
+    depends_on:
+      api:
+        condition: service_started
+    ports:
+      - "4174:80"
+
+volumes:
+  postgres_data:
+  storage_data:

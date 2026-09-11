@@ -1,0 +1,414 @@
+:root {
+  color-scheme: light;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f5f6f8;
+  color: #1a1a1a;
+}
+
+button {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button-danger {
+  background: #b91c1c;
+  border-color: #991b1b;
+}
+
+a.button-primary {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  background: #1a1a1a;
+  color: #fff;
+  text-decoration: none;
+}
+
+input,
+select,
+textarea {
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+/* App shell */
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.app-title {
+  font-weight: 700;
+}
+
+.app-header nav {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+}
+
+.app-header nav a {
+  text-decoration: none;
+  color: #444;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.app-header nav a.active {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.app-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.role-badge {
+  font-size: 0.75rem;
+  background: #eee;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+}
+
+.app-main {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Login */
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 320px;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-form button {
+  margin-top: 0.5rem;
+}
+
+/* Page header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Filters */
+.filter-bar {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.filter-bar label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  gap: 0.25rem;
+}
+
+/* Tables */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.data-table th,
+.data-table td {
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid #eee;
+}
+
+.data-table th {
+  background: #fafafa;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.status-badge {
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+.status-draft {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-published {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-run-success {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-run-failed {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.status-run-running {
+  background: #dbeafe;
+  color: #1e3a8a;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* States */
+.state {
+  padding: 1.5rem;
+  text-align: center;
+  border-radius: 6px;
+  background: #fff;
+  margin: 1rem 0;
+}
+
+.state-error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.state-denied {
+  background: #fff7ed;
+  color: #9a3412;
+}
+
+/* Forms */
+.entity-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 6px;
+  max-width: 640px;
+}
+
+.entity-form label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.entity-form .hint {
+  font-weight: 400;
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.entity-form button {
+  margin-top: 1rem;
+  width: fit-content;
+}
+
+.field-error {
+  color: #991b1b;
+  font-size: 0.85rem;
+}
+
+.inline-form {
+  display: flex;
+  align-items: end;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.inline-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  gap: 0.25rem;
+}
+
+/* Artwork */
+.artwork-section,
+.seasons-section {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 6px;
+  margin-top: 1.5rem;
+  max-width: 640px;
+}
+
+.artwork-slots {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.artwork-slot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.artwork-slot-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.artwork-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0;
+  border: 1px dashed #bbb;
+  border-radius: 4px;
+  object-fit: cover;
+  font-size: 0.75rem;
+  color: #888;
+  text-align: center;
+}
+
+.artwork-preview-poster {
+  width: 100px;
+  height: 150px;
+}
+
+.artwork-preview-banner {
+  width: 200px;
+  height: 112px;
+}
+
+.artwork-preview-thumbnail {
+  width: 160px;
+  height: 90px;
+}
+
+.artwork-slot-status {
+  font-size: 0.8rem;
+  color: #444;
+}
+
+/* Seasons / episodes nesting */
+.season-block {
+  border-top: 1px solid #eee;
+  padding: 0.75rem 0;
+}
+
+.season-block ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.season-block li {
+  padding: 0.25rem 0;
+}
+
+.muted {
+  color: #888;
+}
+
+/* Publish page */
+.publish-action {
+  margin-bottom: 1.5rem;
+}
+
+.publish-blockers {
+  margin-top: 0.75rem;
+}
+
+.report-show {
+  background: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.issue-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+/* Toasts */
+.toast-stack {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 1000;
+}
+
+.toast {
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.toast-success {
+  background: #059669;
+}
+
+.toast-error {
+  background: #dc2626;
+}
